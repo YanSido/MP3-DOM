@@ -22,9 +22,9 @@
  * Creates a playlist DOM element based on a playlist object.
  */
 function createPlaylistElement({ id, name, songs }) {
-    const children = []
-    const classes = []
-    const attrs = {}
+    const children = [name, songs.length + " songs", durationFormat(playlistDuration(songs))]
+    const classes = ["playlists"]
+    const attrs = {id}
     return createElement("div", children, classes, attrs)
 }
 
