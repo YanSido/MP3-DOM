@@ -46,7 +46,7 @@ function createElement(tagName, children = [], classes = [], attributes = {}) {
 
 // You can write more code below this line
 
-function Sorted() {
+function Sorted() { // Sorts the songs and the playlists by their names.
     let songsArr = [] ;
     let playlistArr = [] ;
     let results = {} ;
@@ -86,4 +86,17 @@ function Sorted() {
     }
   
     return results
+  }
+
+  function playlistDuration(songs) { // Returns the playlist duration
+    let totalDuration = 0;
+    let songsArr = songs
+    let songIndex;
+  
+    for (let i =0; i<songsArr.length; i++){
+      songIndex = player.songs.findIndex(a => a.id === songsArr[i]) // finds the index of the id in the songs array.
+      totalDuration += player.songs[songIndex].duration; // Sums the durations. 
+    }
+    return totalDuration;
+    
   }
