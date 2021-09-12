@@ -118,8 +118,7 @@ function Sorted() { // Sorts the songs and the playlists by their names.
       songIndex = player.songs.findIndex(a => a.id === songsArr[i]) // finds the index of the id in the songs array.
       totalDuration += player.songs[songIndex].duration; // Sums the durations. 
     }
-    return totalDuration;
-    
+    return totalDuration; 
   }
 
   function durationFormat(duration) { // Converts the duration from seconds to mm:ss format
@@ -142,7 +141,6 @@ function Sorted() { // Sorts the songs and the playlists by their names.
     if(mm>10 && ss<10){
         return  mm + ":" +  "0" + ss
       }
-  
   }
 
   function findSong(id) { // Returns the song of the given id
@@ -153,5 +151,18 @@ function Sorted() { // Sorts the songs and the playlists by their names.
     else{
       throw Error("Song Doesn't Exist");
     }    
-  
   }
+
+  //Main
+const srotedValues = Sorted(); // Songs list and Playlist sorted
+
+for (let so of srotedValues.songs){ // Displaying the songs
+    let songsElement = document.getElementById("songs")
+    let song = createSongElement(so)
+    songsElement.appendChild(song)
+}
+for (let pl of srotedValues.playlists){ // Displaying the playlists
+    let playlistElement = document.getElementById("playlists")
+    let playlist = createPlaylistElement(pl)
+    playlistElement.appendChild(playlist)
+}
