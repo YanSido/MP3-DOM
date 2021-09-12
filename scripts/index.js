@@ -100,3 +100,26 @@ function Sorted() { // Sorts the songs and the playlists by their names.
     return totalDuration;
     
   }
+
+  function durationFormat(duration) { // Converts the duration from seconds to mm:ss format
+    let date = new Date(duration * 1000);
+    let mm = date.getUTCMinutes(); // minutes
+    let ss = date.getSeconds(); // seconds
+
+    if(mm<10 && ss < 10){
+      return "0" + mm + ":" + "0" + ss
+    }
+  
+    if(mm>10 && ss>10){
+      return mm + ":" + ss
+    }
+  
+    if(mm<10 && ss>10){
+      return  "0" + mm + ":" + ss
+    }
+
+    if(mm>10 && ss<10){
+        return  mm + ":" +  "0" + ss
+      }
+  
+  }
