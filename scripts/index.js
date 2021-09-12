@@ -43,8 +43,26 @@ function createPlaylistElement({ id, name, songs }) {
  * @param {Array} classes - the class list of the new element
  * @param {Object} attributes - the attributes for the new element
  */
-function createElement(tagName, children = [], classes = [], attributes = {}) {
-    // Your code here
+ function createElement(tagName, children = [], classes = [], attributes = {}, image) {
+    let element = document.createElement(tagName)
+    if (image){
+        let coverArt = document.createElement("img")
+        coverArt.setAttribute("src", `${image}`)
+        element.appendChild(coverArt)
+    }
+    for (let [attribute, value] of Object.entries(attributes)) {
+        element.setAttribute(`${attribute}`, `${value}`)
+    }
+    for (let c of classes) {
+        element.classList.add(`${c}`)
+    }
+    for (let child of children) {
+        const newChild = document.createElement(tagName)
+        newChild.textContent = `${child}`
+        element.appendChild(newChild)
+    }
+
+    return element
 }
 
 // You can write more code below this line
