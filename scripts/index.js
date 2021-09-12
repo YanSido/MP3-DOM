@@ -11,11 +11,11 @@
 /**
  * Creates a song DOM element based on a song object.
  */
-function createSongElement({ id, title, album, artist, duration, coverArt }) {
-    const children = []
-    const classes = []
-    const attrs = { onclick: `playSong(${id})` }
-    return createElement("div", children, classes, attrs)
+ function createSongElement({ id, title, album, artist, duration, coverArt }) {
+    const children = [title, artist, album, durationFormat(duration)]
+    const classes = ["songs"]
+    const attrs = { id: id, onclick: `playSong(${id})`,  cursor:"pointer" }
+    return createElement("div", children, classes, attrs, coverArt)
 }
 
 /**
