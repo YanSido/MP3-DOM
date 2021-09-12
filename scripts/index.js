@@ -5,8 +5,11 @@
  * @param {String} songId - the ID of the song to play
  */
  function playSong(songId) {
-    // Your code here
-}
+    console.clear()
+    playingNow = findSong(songId)
+    console.log("Playing " + playingNow.title + " from " + playingNow.album + " by " + playingNow.artist + " | " + durationFormat(playingNow.duration) + ".")
+    playingNow = document.getElementById(songId)
+    }
 
 /**
  * Creates a song DOM element based on a song object.
