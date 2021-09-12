@@ -4,7 +4,7 @@
  *
  * @param {String} songId - the ID of the song to play
  */
-function playSong(songId) {
+ function playSong(songId) {
     // Your code here
 }
 
@@ -45,3 +45,45 @@ function createElement(tagName, children = [], classes = [], attributes = {}) {
 }
 
 // You can write more code below this line
+
+function Sorted() {
+    let songsArr = [] ;
+    let playlistArr = [] ;
+    let results = {} ;
+  
+    for (let i =0; i<player.songs.length; i++){ // Adds song name to array
+        
+        songsArr.push(player.songs[i].title);        
+    }
+  
+    for (let i =0; i<player.playlists.length; i++){ // Adds playlist name to array
+    
+        playlistArr.push(player.playlists[i].name);  
+    }
+  
+    // Sorts the array by their names.
+    songsArr = songsArr.sort()
+    playlistArr = playlistArr.sort()
+  
+    let songsArrSorted = [];
+    let playlistsArrSorted = [];
+    let songIndex;
+    let playlistIndex;
+  
+    for (let i =0; i<songsArr.length; i++){
+      songIndex = player.songs.findIndex(a => a.title === songsArr[i]) // finds the index of the id in the songs array
+      songsArrSorted.push(player.songs[songIndex]);
+    }
+  
+    for (let i =0; i<playlistArr.length; i++){
+      playlistIndex = player.playlists.findIndex(a => a.name === playlistArr[i]) // finds the index of the id in the playlists array
+      playlistsArrSorted.push(player.playlists[playlistIndex]);
+    }
+  
+    results = {
+      songs : songsArrSorted,
+      playlists : playlistsArrSorted,
+    }
+  
+    return results
+  }
