@@ -123,3 +123,14 @@ function Sorted() { // Sorts the songs and the playlists by their names.
       }
   
   }
+
+  function findSong(id) { // Returns the song of the given id
+    let songIndex = player.songs.findIndex(i => i.id === id) // finds the index of the id in the songs array
+    if (songIndex !== -1){
+      return player.songs[songIndex]
+    }
+    else{
+      throw Error("Song Doesn't Exist");
+    }    
+  
+  }
