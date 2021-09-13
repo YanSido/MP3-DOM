@@ -8,7 +8,9 @@
     console.clear()
     playingNow = findSong(songId)
     console.log("Playing " + playingNow.title + " from " + playingNow.album + " by " + playingNow.artist + " | " + durationFormat(playingNow.duration) + ".")
+    document.getElementById("songDuration").innerHTML = "Playing " + playingNow.title + " from " + playingNow.album + " by " + playingNow.artist + " | " + durationFormat(playingNow.duration) + "."
     playingNow = document.getElementById(songId)
+    
     }
 
 /**
@@ -153,7 +155,7 @@ function Sorted() { // Sorts the songs and the playlists by their names.
     }    
   }
 
-  //Main
+//Main
 const srotedValues = Sorted(); // Songs list and Playlist sorted
 
 for (let so of srotedValues.songs){ // Displaying the songs
