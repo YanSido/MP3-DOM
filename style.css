@@ -8,10 +8,11 @@
     padding-bottom: 20px;
     padding-top: 20px;
     box-shadow: 5px 10px;
+    cursor: pointer;
 }
 
 .songs:hover{
-    background-color:rgb(206, 112, 68); 
+    background-color:rgb(182, 79, 173); 
     transform: scale(1.05);
 }
 
@@ -28,13 +29,22 @@
 }
 
 .playlists:hover{
-    background-color:rgb(206, 112, 68); 
+    background-color:rgb(182, 79, 173); 
     transform: scale(1.1);
 }
 
 h1{
     text-align: center;
     text-decoration: underline;
+    position: sticky; top: 0;
+    width: 100%;
+    background: linear-gradient(to right, blue, pink);
+    color: white;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom-left-radius: 30%;
+    border-bottom-right-radius: 30%;
+    margin-top: 0%;
 }
 
 footer {
@@ -42,7 +52,7 @@ footer {
     left: 0;
     bottom: 0;
     width: 100%;
-    background-color: red;
+    background: linear-gradient(to right, rgb(163, 67, 142), rgb(255, 0, 212));
     color: white;
     text-align: center;
     padding-top: 20px;

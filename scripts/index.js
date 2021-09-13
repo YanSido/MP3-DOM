@@ -19,7 +19,7 @@
  function createSongElement({ id, title, album, artist, duration, coverArt }) {
     const children = [title, artist, album, durationFormat(duration)]
     const classes = ["songs"]
-    const attrs = { id: id, onclick: `playSong(${id})`,  cursor:"pointer" }
+    const attrs = { id: id, onclick: `playSong(${id})`}
     return createElement("div", children, classes, attrs, coverArt)
 }
 
