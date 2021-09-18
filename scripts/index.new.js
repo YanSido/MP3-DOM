@@ -18,9 +18,53 @@
  let currently = [] // The first index is currently playing
  let intervalIndicator; // start/stop interval
  let globalId; // Helps to navigate which song to play and when to start (-1 stops the play)
+ 
 
  function playSong(songId) {
-  // Your code here
+  songId = Number(songId) // Just in case input is string
+  currently.push(songId)
+
+  // Checks if the the playing song has changed
+  if (currently.length !== 1){
+    if (currently[0] === currently[1]){
+      currently.pop()
+    }
+  }
+
+  if (currently.length !== 1 && currently[0] !== currently[1]){
+    timer = 0
+    currently.shift()
+  }
+
+  timer++; // indicates the seconds
+
+  let songsArrIdSorted = songsArray(); // helps to define the index of the songs
+
+  try{ // try to find the song given (in case has removed)
+    playingNow = findSong(songId)
+  } catch(error){
+    globalId = -1; // Stops the interval
+    return ;
+  }
+
+  songId = Number(playingNow.id) // In case the song has changed
+  globalId = songId;
+
+  if (timer === playingNow.duration + 1){ // Handling end of song
+    if (songsArrIdSorted.indexOf(Number(songId)) === songsArrIdSorted.length-1){ // Checks if it is the end of the player
+      globalId = -1; // Stops the interval
+      return ;
+    }
+    playSong(songsArrIdSorted[songsArrIdSorted.indexOf(Number(songId)) + 1]) // Play the next song by index
+  }
+
+  if (durationFormatReverse(String(playingNow.duration))){ // first time of playing added song
+    playingNow.duration = durationFormatReverse(playingNow.duration)
+  }
+
+  // Bar playing details
+  document.getElementById("song-duration-bar").innerHTML = "Playing " + playingNow.title + " from " + playingNow.album + " by " + playingNow.artist + " | " + durationFormat(timer) + " / " + durationFormat(playingNow.duration) 
+  
 }
 
 /**
