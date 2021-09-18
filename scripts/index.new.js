@@ -14,7 +14,37 @@
 * @param {Number} songId - the ID of the song to remove
 */
 function removeSong(songId) {
-  // Your code here
+  let songIdEl = document.getElementById("song " + String(songId)) // Finding the song element 
+  songIdEl.remove() // Remove from DOM
+
+  for (let i =0; i<globalSongsArraySorted.length; i++){ // Updates the global songs variable
+    if (String(globalSongsArraySorted[i].id) === String(songId)){
+      globalSongsArraySorted.splice(i, 1);
+    }
+  }
+
+  if (currently.includes(songId)){ // Reset the duration time play if the playing song has removed
+    timer = 0;
+  }
+
+  if (globalSongsArraySorted.length === 0){ // In case no songs left
+    throw Error("No songs in player!")
+  }
+
+  for (let i = 0; i<sortedPlaylistsVar.length; i++){ // Update the playlists when song is removed 
+    for (let a =0; a<sortedPlaylistsVar[i].songs.length; a++){
+      if (sortedPlaylistsVar[i].songs[a] === Number(songId)){
+          sortedPlaylistsVar[i].songs.splice(a, 1)
+          let parent = document.querySelectorAll("#playlists .list")[0]
+
+          // Updating the DOM
+          while (document.querySelectorAll("#playlists .list")[0].firstChild){ 
+            parent.removeChild(document.querySelectorAll("#playlists .list")[0].firstChild);
+          }
+          generatePlaylists()
+      }
+    }  
+  } 
 }
 
 /**
