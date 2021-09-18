@@ -47,11 +47,18 @@ function handleAddSongEvent(event) {
 * Creates a song DOM element based on a song object.
 */
 function createSongElement({ id, title, album, artist, duration, coverArt }) {
-  const children = []
-  const classes = []
-  const attrs = {}
-  const eventListeners = {}
-  return createElement("div", children, classes, attrs, eventListeners)
+  const children =[]
+
+  if (String(duration).includes(":")){
+    children.push(title, artist, album, duration, "Play", "Remove")
+  }
+  else if(!String(duration).includes(":")){
+    children.push(title, artist, album, durationFormat(duration), "Play", "Remove")
+  }
+
+  const classes = ["song"]
+  const attrs = {id: id}
+  return createElement("div", children, classes, attrs, coverArt)
 }
 
 /**
