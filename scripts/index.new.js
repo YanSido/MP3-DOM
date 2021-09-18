@@ -208,7 +208,9 @@ function generateSongs() {
 * Inserts all playlists in the player as DOM elements into the playlists list.
 */
 function generatePlaylists() {
-  // Your code here
+  for (let playlist of sortedPlaylistsVar){ // Displaying the playlists
+      document.querySelectorAll(".list")[1].appendChild(createPlaylistElement(playlist))
+      }
 }
 
 function sortedPlaylists() { // Sorts the songs and the playlists by their names.
