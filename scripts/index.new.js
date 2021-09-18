@@ -4,6 +4,21 @@
  *
  * @param {Number} songId - the ID of the song to play
  */
+
+ let sortedPlaylistsVar = sortedPlaylists(); // Global variable for playlists
+ let globalSongsArraySorted = [] // Global variable for songs
+
+ for (let i =0; i<player.songs.length; i++){ // Adding the default songs to the array
+   globalSongsArraySorted.push(player.songs[i])
+ }
+
+ globalSongsArraySorted = sortedSongs(globalSongsArraySorted)
+
+ let timer = 0; // Time passed
+ let currently = [] // The first index is currently playing
+ let intervalIndicator; // start/stop interval
+ let globalId; // Helps to navigate which song to play and when to start (-1 stops the play)
+
  function playSong(songId) {
   // Your code here
 }
