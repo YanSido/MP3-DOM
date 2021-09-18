@@ -96,6 +96,135 @@ function generatePlaylists() {
   // Your code here
 }
 
+function sortedPlaylists() { // Sorts the songs and the playlists by their names.
+  let playlistArr = [] ;
+
+  for (let i =0; i<player.playlists.length; i++){ // Adds playlist name to array
+  
+      playlistArr.push(player.playlists[i].name);  
+  }
+
+  // Sorts the array by their names.
+  playlistArr = playlistArr.sort()
+
+  let playlistsArrSorted = [];
+  let playlistIndex;
+
+  for (let i =0; i<playlistArr.length; i++){
+    playlistIndex = player.playlists.findIndex(a => a.name === playlistArr[i]) // finds the index of the id in the playlists array
+    playlistsArrSorted.push(player.playlists[playlistIndex]);
+  }
+
+  return playlistsArrSorted
+}
+
+function playlistDuration(songs) { // Returns the playlist duration
+  let totalDuration = 0;
+  let songsArr = songs
+  let songIndex;
+
+  for (let i =0; i<songsArr.length; i++){
+    songIndex = player.songs.findIndex(a => a.id === songsArr[i]) // finds the index of the id in the songs array.
+    totalDuration += player.songs[songIndex].duration; // Sums the durations. 
+  }
+
+  return totalDuration; 
+}
+
+function durationFormat(duration) { // Converts the duration from seconds to mm:ss format
+  let date = new Date(duration * 1000);
+  let mm = date.getUTCMinutes(); // minutes
+  let ss = date.getSeconds(); // seconds
+
+  if(mm<10 && ss < 10){
+    return "0" + mm + ":" + "0" + ss
+  }
+
+  if(mm>=10 && ss>=10){
+    return mm + ":" + ss
+  }
+
+  if(mm<10 && ss>=10){
+    return  "0" + mm + ":" + ss
+  }
+
+  if(mm>=10 && ss<10){
+      return  mm + ":" +  "0" + ss
+    }
+}
+
+function durationFormatReverse(duration){ // Converts the duration to seconds format
+  let a = duration.split(':');
+  let seconds = parseInt(a[0], 10)*60 + parseInt(a[1], 10);
+  return seconds
+}
+
+function findSong(id) { // Returns the song of the given id
+  let songIndex = globalSongsArraySorted.findIndex(i => i.id === Number(id)) // finds the index of the id in the songs array
+  if (songIndex !== -1){
+    return globalSongsArraySorted[songIndex]
+  }
+  else{
+    if (globalSongsArraySorted.length !== 0){
+      timer = 0;
+      for (let i =0; i<currently.length; i++){
+        currently.pop()
+      }
+      currently.push(Number(globalSongsArraySorted[0].id))
+      return globalSongsArraySorted[0]
+    }
+    else{
+      throw Error("No songs in player!")
+    }
+    
+  }   
+
+}
+
+function sortedSongs(arr) { // Sorts the songs by their names.
+  let songsArr = [] ;
+  for (let i =0; i<arr.length; i++){ // Adds song name to array
+      
+      songsArr.push(arr[i].title);        
+  }
+  // Sorts the array by their names (does not matter if capital letters or not)
+  songsArr.sort(function (a, b) {
+    return a.localeCompare(b);
+    });
+  let songsArrSorted = [];
+  let songIndex;
+
+  for (let i =0; i<songsArr.length; i++){
+    songIndex = arr.findIndex(a => a.title === songsArr[i]) // finds the index of the id in the songs array
+    songsArrSorted.push(arr[songIndex]);
+  }
+
+  return songsArrSorted
+}
+
+function songsArray(){ // Returns the songs ids of the player
+  let songsArr;
+
+  if (globalSongsArraySorted){
+    songsArr = sortedSongs(globalSongsArraySorted)
+  }
+  else if(!globalSongsArraySorted){ // On if the global variable is empty 
+    songsArr = sortedSongs(player.songs)
+  }
+  
+  let songsArrId = []
+
+  for (let i =0; i<songsArr.length; i++){
+      songsArrId.push(songsArr[i].id)
+  }
+
+  return songsArrId;
+}
+
+function getRandomInt() { // Returns Random number between 0 - 999
+return Math.floor(Math.random() * 1000);
+}
+
 // Creating the page structure
 generateSongs()
 generatePlaylists()
