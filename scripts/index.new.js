@@ -84,8 +84,94 @@ function createPlaylistElement({ id, name, songs }) {
 * @param {Object} attributes - the attributes for the new element
 * @param {Object} eventListeners - the event listeners on the element
 */
-function createElement(tagName, children = [], classes = [], attributes = {}, eventListeners = {}) {
-  // Your code here
+function createElement(tagName, children = [], classes = [], attributes = {}, image, songs) {
+  // Creating DOM as given example in index.new.html file
+  let element = document.createElement(tagName)
+  let leftSide = document.createElement("div")
+  let songDetails;
+  leftSide.setAttribute("class", "left")
+  let rightSide = document.createElement("div")
+  rightSide.setAttribute("class", "right")
+  element.appendChild(leftSide)
+  element.appendChild(rightSide)
+
+  if (image){
+    songDetails = document.createElement("div")
+    songDetails.setAttribute("class", "song-details")
+    let coverArt = document.createElement("img")
+    coverArt.setAttribute("src", `${image}`)
+    leftSide.appendChild(coverArt)
+    leftSide.appendChild(songDetails)
+  }
+ 
+  for (let [attribute, value] of Object.entries(attributes)) {
+      if (attribute === "id" && image){
+          element.setAttribute(`${attribute}`, "song " + String(value))
+      }
+      else{
+          element.setAttribute(`${attribute}`, `${value}`)
+      }
+      
+  }
+
+  for (let c of classes) {
+      element.classList.add(`${c}`)
+  }
+
+  if (image){
+    let leftChildren = children.splice(0,3)
+    for (let child of leftChildren) {
+        const newChild = document.createElement(tagName)
+        newChild.textContent = `${child}`
+        songDetails.appendChild(newChild)
+  }
+    newChild = document.createElement("div")
+    newChild.textContent = `${children[0]}`
+    newChild.classList.add("song-duration")
+    rightSide.appendChild(newChild)
+    
+    newChild = document.createElement("div")
+    newChild.classList.add("song-actions")
+    rightSide.appendChild(newChild)
+
+    let newPlayChild = document.createElement("button")
+    newPlayChild.classList.add("play-button")
+    newPlayChild.textContent = `${children[1]}`
+    newChild.appendChild(newPlayChild)
+
+    let newRemoveChild = document.createElement("button")
+    newRemoveChild.classList.add("remove-button")
+    newRemoveChild.textContent = `${children[2]}`
+    newChild.appendChild(newRemoveChild)
+  }
+
+  if(!image){
+    let newNameEl = document.createElement("div")
+    newNameEl.classList.add("name")
+    newNameEl.textContent = `${children[0]}`
+    leftSide.appendChild(newNameEl)
+
+    let playlistLengthEl = document.createElement("div")
+    playlistLengthEl.classList.add("playlist-length")
+    playlistLengthEl.textContent = `${children[1]}`
+    rightSide.appendChild(playlistLengthEl)
+
+    let playlistDurationEl = document.createElement("div")
+    playlistDurationEl.classList.add("playlist-duration")
+    playlistDurationEl.textContent = `${children[2]}`
+    rightSide.appendChild(playlistDurationEl)
+
+    let songsEl;
+
+    for (let i =0; i<songs.length; i++){ // Adds the playlists songs to DOM
+      songsEl = document.createElement("div")
+      songsEl.textContent = String(songs[i])
+      songsEl.classList.add("playlist-song")
+      rightSide.appendChild(songsEl)
+    }
+  }
+
+  return element
 }
 
 /**
