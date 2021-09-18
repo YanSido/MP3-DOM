@@ -1,4 +1,7 @@
-.songs{
+body{
+    margin-bottom: 90px;
+}
+.song{
     text-align: center;
     border-style: solid;
     border-radius: 20px;
@@ -11,12 +14,12 @@
     cursor: pointer;
 }
 
-.songs:hover{
+.song:hover{
     background-color:rgb(182, 79, 173); 
     transform: scale(1.05);
 }
 
-.playlists{
+.playlist{
     text-align: center;
     border-style: solid;
     border-radius: 20px;
@@ -28,14 +31,13 @@
     box-shadow: 5px 10px;
 }
 
-.playlists:hover{
+.playlist:hover{
     background-color:rgb(182, 79, 173); 
     transform: scale(1.1);
 }
 
-h1{
+h2{
     text-align: center;
-    text-decoration: underline;
     position: sticky; top: 0;
     width: 100%;
     background: linear-gradient(to right, blue, pink);
@@ -44,7 +46,7 @@ h1{
     padding-bottom: 20px;
     border-bottom-left-radius: 30%;
     border-bottom-right-radius: 30%;
-    margin-top: 0%;
+    margin-top: 20px;
 }
 
 footer {
