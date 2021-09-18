@@ -458,3 +458,31 @@ generatePlaylists()
 
 // Making the add-song-button actually do something
 document.getElementById("add-button").addEventListener("click", handleAddSongEvent)
+
+document.addEventListener("click", e => { // Uses one listener to all buttons
+  if (e.target.className === "remove-button"){ // Handles remove button click
+    let parent = e.target.parentNode
+    
+    let songEl = parent.parentNode.parentNode
+    let id = songEl.id
+
+    // Checks if the song id has 3 digits number
+    if (id.length === 6){
+        id = id[5]
+    }
+
+    if (id.length === 7){
+      id = id[5] + id[6]
+    }
+
+    if (id.length === 8){
+      id = id[5] + id[6] + id[7]
+    }
+
+    removeSong(id)
+  }
+
+  if (e.target.className === "play-button"){ // Handles play button click
+    handleSongClickEvent(e)
+  }
+})
