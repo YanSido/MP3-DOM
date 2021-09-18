@@ -178,7 +178,30 @@ function createElement(tagName, children = [], classes = [], attributes = {}, im
 * Inserts all songs in the player as DOM elements into the songs list.
 */
 function generateSongs() {
-  // Your code here
+  let i = 0 // song index
+  let durationEl;
+
+  for (let song of sortedSongs(player.songs)){ // Displaying the default songs
+      document.querySelectorAll(".list")[0].appendChild(createSongElement(song))
+
+      // Painting the duration number depends on the length
+      if (song.duration <= 120){
+        durationEl = document.getElementsByClassName("song-duration")[i]
+        durationEl.style.color = "rgb(1, 254, 1)"
+      }
+
+      if(song.duration >= 420){
+        durationEl = document.getElementsByClassName("song-duration")[i]
+        durationEl.style.color = "rgb(254, 1, 1)"
+      }
+
+      if(song.duration < 420 && song.duration > 120){
+        durationEl = document.getElementsByClassName("song-duration")[i]
+        durationEl.style.color = "rgb(122, 122, 1)"
+      }
+
+      i++;
+       }
 }
 
 /**
