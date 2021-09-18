@@ -1,7 +1,50 @@
 body{
     margin-bottom: 90px;
+    font-family: 'Grechen Fuemen', cursive;
 }
+
+#add-section{
+    text-align: center;
+    font-size: 10px;
+    font-family: 'Grechen Fuemen', cursive;
+}
+
+input{
+    text-align: center;
+    font-size: 20px;
+    border-radius: 10px;
+    border-color: #ff4c6b;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    box-shadow: 0 0 1px 2px rgb(162, 0, 255)
+}
+
+#add-button{
+    font-family: 'Grechen Fuemen', cursive;
+    font-size: 30px;
+    margin-top: 20px;
+    border-radius: 5px;
+    border-color: #ff4c6b;
+    border-width: 2px;
+    padding-left: 50px;
+    padding-right: 50px;
+    background-color: #fff;
+    box-shadow:
+    0 0 6px 3px #fff,
+    0 0 5px 3px #f0f,
+    0 0 15px 5px #0ff;
+    cursor: pointer;
+}
+
+h2{
+    font-family: 'Grechen Fuemen', cursive;
+    font-size: 30px;
+}
+
 .song{
+    font-family: 'Grechen Fuemen', cursive;
+    font-size: 20px;
     text-align: center;
     border-style: solid;
     border-radius: 20px;
@@ -11,12 +54,47 @@ body{
     padding-bottom: 20px;
     padding-top: 20px;
     box-shadow: 5px 10px;
-    cursor: pointer;
 }
 
 .song:hover{
     background-color:rgb(182, 79, 173); 
     transform: scale(1.05);
+}
+
+.song-details{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border: solid;
+    border-radius: 5px;
+    font-size: 40px;
+}
+
+.song-duration{
+    font-size: 30px;
+}
+
+.play-button {
+    font-size: 21px;
+    font-weight: bold;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient( rgba(255, 0, 128, 0.8) 60%, rgba(255, 255, 255, 1) 62%);
+    border-radius: 50%;
+    margin: 20px;
+    box-shadow: 0px 0px 25px 3px rgba(255, 0, 128, 0.8);
+    cursor: pointer;
+  }
+
+.remove-button{
+    font-size: 20px;
+    font-weight: bold;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient( rgba(255, 0, 128, 0.8) 60%, rgba(255, 255, 255, 1) 62%);
+    border-radius: 50%;
+    margin: 20px;
+    box-shadow: 0px 0px 25px 3px rgba(255, 0, 128, 0.8);
+    cursor: pointer;
 }
 
 .playlist{
@@ -49,7 +127,12 @@ h2{
     margin-top: 20px;
 }
 
+.playlist .name{
+    font-size: 30px;
+}
+
 footer {
+    font-size: 30px;
     position: fixed;
     left: 0;
     bottom: 0;
