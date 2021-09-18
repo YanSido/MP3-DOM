@@ -21,8 +21,61 @@ function removeSong(songId) {
 * Adds a song to the player, and updates the DOM to match.
 */
 function addSong({ title, album, artist, duration, coverArt }) {
-  // Your code here
-}
+  let newId;
+  let added = false; // Indicates if new id generated 
+  let idSongsArray = songsArray() // Gets the currently ids 
+
+  while (added === false){ // generates new available id
+    newId = getRandomInt();
+
+    if (!idSongsArray.includes(String(newId))){
+      added = true;
+      idSongsArray.push(String(newId))
+    }
+  }
+
+  let song ={
+    id: newId,
+    title: title,
+    album: album,
+    artist: artist,
+    duration: duration,
+    coverArt: coverArt
+  }
+
+  // Updating the global songs variable 
+  globalSongsArraySorted.push(song)
+  globalSongsArraySorted = sortedSongs(globalSongsArraySorted)
+
+  // Adding new song to DOM
+  let newSongEl;
+  let parent = document.querySelectorAll(".list")[0]
+
+  while (document.querySelectorAll(".list")[0].firstChild){
+    parent.removeChild(document.querySelectorAll(".list")[0].firstChild);
+  }
+
+  for (let newSong of globalSongsArraySorted){
+    newSongEl = createSongElement(newSong)
+    parent.appendChild(newSongEl)
+  }
+
+  // Finds the song in playlist to remove it
+  let parentDurationEl = document.getElementById("song " + String(newId))
+  let durationEl = parentDurationEl.getElementsByClassName("song-duration")[0]
+
+  // Painting the duration number depends on the length
+  if (durationFormatReverse(durationEl.textContent) <= 120){
+    durationEl.style.color = "rgb(1, 254, 1)"
+  }
+  if (durationFormatReverse(durationEl.textContent) >= 420){
+    durationEl.style.color = "rgb(254, 1, 1)"
+  }
+  if (durationFormatReverse(durationEl.textContent) < 420 && durationFormatReverse(durationEl.textContent) > 120){
+    durationEl.style.color = "rgb(122, 122, 1)"
+  }
+
+  }
 
 /**
 * Acts on a click event on an element inside the songs list.
