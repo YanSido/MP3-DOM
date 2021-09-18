@@ -65,11 +65,10 @@ function createSongElement({ id, title, album, artist, duration, coverArt }) {
 * Creates a playlist DOM element based on a playlist object.
 */
 function createPlaylistElement({ id, name, songs }) {
-  const children = []
-  const classes = []
-  const attrs = {}
-  const eventListeners = {}
-  return createElement("div", children, classes, attrs, eventListeners)
+  const children = [name, songs.length + " songs", durationFormat(playlistDuration(songs))]
+  const classes = ["playlist"]
+  const attrs = {id: id}
+  return createElement("div", children, classes, attrs, "", songs)
 }
 
 /**
