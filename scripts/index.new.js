@@ -114,7 +114,26 @@ function addSong({ title, album, artist, duration, coverArt }) {
 * @param {MouseEvent} event - the click event
 */
 function handleSongClickEvent(event) {
-  // Your code here
+  // Finds the clicked song id
+  let parent = event.target.parentNode
+  let songEl = parent.parentNode.parentNode
+  let id = songEl.id
+
+  // Checks if the song id has 3 digits number
+  if (id.length === 6){ 
+    globalId = id[5]
+  }
+
+  if (id.length === 7){
+    globalId = id[5] + id[6]
+  }
+
+  if (id.length === 8){
+    globalId = id[5] + id[6] + id[7]
+  }
+
+  clearInterval(intervalIndicator) // Clear existed interval
+  intervalIndicator = setInterval(function(){if (globalId !== -1) {playSong(globalId)}}, 1000) // Starts to play song each 1 second
 }
 
 /**
