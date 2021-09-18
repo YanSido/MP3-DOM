@@ -123,7 +123,15 @@ function handleSongClickEvent(event) {
 * @param {MouseEvent} event - the click event
 */
 function handleAddSongEvent(event) {
-  // Your code here
+  // Assigning input values
+  song = {
+    title: document.getElementsByName('title')[0].value,
+    album: document.getElementsByName('album')[0].value,
+    artist: document.getElementsByName('artist')[0].value,
+    duration: document.getElementsByName('duration')[0].value,
+    coverArt: document.getElementsByName('cover-art')[0].value
+  }
+  addSong(song)
 }
 
 /**
